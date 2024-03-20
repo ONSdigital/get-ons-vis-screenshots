@@ -29,7 +29,7 @@
 
         function createPage(articlesAndDvcs, screenshotFilenames) {
             console.log({articlesAndDvcs, screenshotFilenames});
-            articlesAndDvcs = [...articlesAndDvcs].sort((a, b) => a.release_date.localeCompare(b.release_date));
+            articlesAndDvcs = [...articlesAndDvcs].sort((a, b) => b.release_date.localeCompare(a.release_date));
 
             const sections = d3.select('#sections')
                 .selectAll('section')
