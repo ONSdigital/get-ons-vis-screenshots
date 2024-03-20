@@ -155,5 +155,85 @@
         ],
         "summary": "",
         "release_date": "2024-03-15T00:00:00.000Z"
+    },
+    {
+        "title": "Explore: Which towns attract people with advanced education?",
+        "doc_uri": "https://www.ons.gov.uk//peoplepopulationandcommunity/educationandchildcare/articles/explorewhichtownsattractpeoplewithadvancededucation/2024-03-15",
+        "vis_urls": [
+            "/visualisations/dvc2734/build/index.html",
+            "/visualisations/dvc2734/build/datadownload.xlsx"
+        ],
+        "summary": "",
+        "release_date": "2024-03-15T00:00:00.000Z"
+    },
+    {
+        "title": "Geographical mobility of young people across English towns and cities",
+        "doc_uri": "https://www.ons.gov.uk//peoplepopulationandcommunity/educationandchildcare/articles/geographicalmobilityofyoungpeopleacrossenglishtownsandcities/march2024",
+        "vis_urls": [
+            "/visualisations/dvc2883/fig01/index.html",
+            "/visualisations/dvc2883/fig01/datadownload.xlsx",
+            "/visualisations/dvc2883/fig02/index.html",
+            "/visualisations/dvc2883/fig02/datadownload.xlsx",
+            "/visualisations/dvc2883/fig03/index.html",
+            "/visualisations/dvc2883/fig03/datadownload.xlsx",
+            "/visualisations/dvc2883/fig04/index.html",
+            "/visualisations/dvc2883/fig04/datadownload.xlsx",
+            "/visualisations/dvc2883/fig05/index.html",
+            "/visualisations/dvc2883/fig05/datadownload.xlsx",
+            "/visualisations/dvc2883/fig06/index.html",
+            "/visualisations/dvc2883/fig06/datadownload.xlsx",
+            "/visualisations/dvc2883/fig07/index.html",
+            "/visualisations/dvc2883/fig07/datadownload.xlsx",
+            "/visualisations/dvc2883/fig08/index.html",
+            "/visualisations/dvc2883/fig08/datadownload.xlsx",
+            "/visualisations/dvc2883/fig09/index.html",
+            "/visualisations/dvc2883/fig09/datadownload.xlsx",
+            "/visualisations/dvc2883/fig10/index.html",
+            "/visualisations/dvc2883/fig10/datadownload.xlsx"
+        ],
+        "summary": "",
+        "release_date": "2024-03-15T00:00:00.000Z"
+    },
+    {
+        "title": "More adults are active in areas with a higher number of sports facilities ",
+        "doc_uri": "https://www.ons.gov.uk//peoplepopulationandcommunity/wellbeing/articles/moreadultsareactiveinareaswithahighernumberofsportsfacilities/2024-03-07",
+        "vis_urls": [
+            "/visualisations/dvc2834/sports_msoa/index.html",
+            "/visualisations/dvc2834/sports_msoa/datadownload.xlsx",
+            "/visualisations/dvc2834/beeswarm_region_sports/index.html",
+            "/visualisations/dvc2834/beeswarm_region_sports/datadownload.xlsx",
+            "/visualisations/dvc2834/beeswarm_region_largesuper/index.html",
+            "/visualisations/dvc2834/beeswarm_region_largesuper/datadownload.xlsx",
+            "/visualisations/dvc2834/multimapUK_merged/index.html",
+            "/visualisations/dvc2834/multimapUK_merged/datadownload.xlsx"
+        ],
+        "summary": "",
+        "release_date": "2024-03-07T00:00:00.000Z"
+    },
+    {
+        "title": "Developing estimates of depletion for the UK natural capital accounts",
+        "doc_uri": "https://www.ons.gov.uk//economy/environmentalaccounts/articles/developingestimatesofdepletionfortheuknaturalcapitalaccounts/2024",
+        "vis_urls": [
+            "/visualisations/dvc2849/fig1/index.html",
+            "/visualisations/dvc2849/fig1/datadownload.xlsx",
+            "/visualisations/dvc2849/fig2/index.html",
+            "/visualisations/dvc2849/fig2/datadownload.xlsx",
+            "/visualisations/dvc2849/fig3/index.html",
+            "/visualisations/dvc2849/fig3/datadownload.xlsx",
+            "/visualisations/dvc2849/fig4/index.html",
+            "/visualisations/dvc2849/fig4/datadownload.xlsx",
+            "/visualisations/dvc2849/fig5/index.html",
+            "/visualisations/dvc2849/fig5/datadownload.xlsx",
+            "/visualisations/dvc2849/fig6/index.html",
+            "/visualisations/dvc2849/fig6/datadownload.xlsx",
+            "/visualisations/dvc2849/fig7/index.html",
+            "/visualisations/dvc2849/fig7/datadownload.xlsx",
+            "/visualisations/dvc2849/fig8/index.html",
+            "/visualisations/dvc2849/fig8/datadownload.xlsx",
+            "/visualisations/dvc2849/fig9/index.html",
+            "/visualisations/dvc2849/fig9/datadownload.xlsx"
+        ],
+        "summary": "",
+        "release_date": "2024-03-07T00:00:00.000Z"
     }
 ]
