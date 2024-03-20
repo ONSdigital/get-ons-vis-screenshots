@@ -85,17 +85,17 @@ def main():
     with open('screenshot-filenames.json', 'r') as f:
         screenshot_filenames = json.load(f)
 
-    # When we've seen 10 vizzes in a row before, stop.
+    # When we've seen 20 vizzes in a row before, stop.
     vis_seen_before_counter = [0]
 
     LAST_PAGE = 1
     for page_num in range(1, LAST_PAGE + 1):
-        if vis_seen_before_counter[0] >= 10:
+        if vis_seen_before_counter[0] >= 20:
             break
         display_page_number(page_num)
         lst = json.loads(get_page(PAGE_LIST_URL + str(page_num)))
         for result in lst["result"]["results"]:
-            if vis_seen_before_counter[0] >= 10:
+            if vis_seen_before_counter[0] >= 20:
                 break
             uri = ONS_URL + result["uri"] + "/data"
             raw_page = get_page(uri)
@@ -117,8 +117,8 @@ def main():
         with open('screenshot-filenames.json', 'w') as f:
             json.dump(screenshot_filenames, f, indent=4)
 
-    if vis_seen_before_counter[0] >= 10:
-        print('Finished early, because 10 vizzes in a row have been scraped already.')
+    if vis_seen_before_counter[0] >= 20:
+        print('Finished early, because 20 vizzes in a row have been scraped already.')
 
 if __name__ == "__main__":
     main()
