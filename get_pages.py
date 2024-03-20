@@ -13,9 +13,22 @@ PAGE_LIST_URL = (
 def get_page(url):
     print("***", url)
     content = requests.get(url).text
-    time.sleep(1)
+    time.sleep(1.5)
     return content
 
+
+def try_to_get_screenshot(filename, vis_url):
+    "Returns True if no error was thrown"
+    try:
+        subprocess.run([
+            'shot-scraper', ONS_URL + vis_url,
+            '-o', 'screenshots/' + str(filename) + '.png',
+            '--quality', '60', '--wait', '4000'
+        ], check=True)
+        return True
+    except:
+        print('Failed to screenshot', vis_url, '!')
+        return False
 
 def process_doc(doc_uri, results, screenshot_filenames, vis_seen_before_counter):
     raw_doc_page = get_page(doc_uri + "/data")
@@ -49,16 +62,8 @@ def process_doc(doc_uri, results, screenshot_filenames, vis_seen_before_counter)
                 else:
                     vis_seen_before_counter[0] = 0
                     filename = len(screenshot_filenames)
-                    try:
-                        subprocess.run([
-                            'shot-scraper', ONS_URL + vis_url,
-                            '-o', 'screenshots/' + str(filename) + '.png',
-                            '--quality', '60', '--wait', '4000'
-                        ])
+                    if try_to_get_screenshot(filename, vis_url):
                         screenshot_filenames[vis_url] = filename
-                    except:
-                        print('Failed to screenshot', vis_url, '!')
-                        pass
 
             all_vis_urls.extend(vis_urls)
         if len(all_vis_urls) > 0:
@@ -113,7 +118,10 @@ def main():
         # Save to file after every page of results, so we'll have some results
         # even if the program crashes eventually :-)
         with open('articles-and-dvcs.json', 'w') as f:
-            json.dump(results, f, indent=4)
+            results_without_duplicates = [
+                json.loads(s) for s in set(json.dumps(result, sort_keys=True) for result in results)
+            ]
+            json.dump(results_without_duplicates, f, indent=4)
         with open('screenshot-filenames.json', 'w') as f:
             json.dump(screenshot_filenames, f, indent=4)
 
