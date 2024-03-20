@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datavis screenshots</title>
+    <!-- Include D3.js from CDN -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <h1>Datavis Screenshots</h1>
+    <!-- Visualization container -->
+    <div id="sections"></div>
+
+    <!-- Script to fetch JSON and create visualization -->
+    <script>
+        // Fetch JSON data
+        fetch('articles-and-dvcs.json')
+            .then(response => response.json())
+            .then(go)
+
+        function go(articlesAndDvcs) {
+            fetch('screenshot-filenames.json')
+                .then(response => response.json())
+                .then(screenshotFilenames => {
+                    createPage(articlesAndDvcs, screenshotFilenames)
+                });
+        }
+
+        function createPage(articlesAndDvcs, screenshotFilenames) {
+            console.log({articlesAndDvcs, screenshotFilenames});
+            articlesAndDvcs = [...articlesAndDvcs].sort((a, b) => a.release_date.localeCompare(b.release_date));
+
+            const sections = d3.select('#sections')
+                .selectAll('section')
+                .data(articlesAndDvcs)
+                .join('section');
+
+            sections.append('h2')
+                .append('a')
+                .attr('href', d => d.doc_uri.replace('ons.gov.uk//', 'ons.gov.uk/'))
+                .text(d => d.title);
+
+            sections.append('p')
+                .text(d => d.release_date);
+
+            sections.selectAll('a')
+                .data(d => d.vis_urls.filter(d => d in screenshotFilenames))
+                .join('a')
+                .attr('href', d => `https://www.ons.gov.uk/${d}`)
+                .append('img')
+                .style('width', '100%')
+                .style('max-width', '500px')
+                .attr('src', d => `screenshots/${screenshotFilenames[d]}.png`);
+
+        }
+    </script>
+</body>
+</html>
+
