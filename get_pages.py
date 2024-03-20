@@ -90,13 +90,13 @@ def main():
 
     LAST_PAGE = 20
     for page_num in range(1, LAST_PAGE + 1):
-        #if vis_seen_before_counter[0] >= 20:
-        #    break
+        if vis_seen_before_counter[0] >= 20:
+            break
         display_page_number(page_num)
         lst = json.loads(get_page(PAGE_LIST_URL + str(page_num)))
         for result in lst["result"]["results"]:
-            #if vis_seen_before_counter[0] >= 20:
-            #    break
+            if vis_seen_before_counter[0] >= 20:
+                break
             uri = ONS_URL + result["uri"] + "/data"
             raw_page = get_page(uri)
             try:
