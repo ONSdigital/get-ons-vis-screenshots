@@ -27,6 +27,19 @@
                 });
         }
 
+        function extractDvcNumbers(vis_urls) {
+            dvc_numbers = new Set();
+            for (const vis_url of vis_urls) {
+                const tokens = vis_url.split('/');
+                for (const token of tokens) {
+                    if (token.startsWith('dvc')) {
+                        dvc_numbers.add(token);
+                    }
+                }
+            }
+            return [...dvc_numbers];
+        }
+
         function createPage(articlesAndDvcs, screenshotFilenames) {
             console.log({articlesAndDvcs, screenshotFilenames});
             articlesAndDvcs = [...articlesAndDvcs].sort((a, b) => b.release_date.localeCompare(a.release_date));
@@ -42,7 +55,14 @@
                 .text(d => d.title);
 
             sections.append('p')
-                .text(d => d.release_date);
+                .text(d => d.release_date.slice(0, 10));
+
+            sections
+                .append('div')
+                .selectAll('p')
+                .data(d => extractDvcNumbers(d.vis_urls))
+                .join('p')
+                .text(d => d);
 
             sections
                 .append('div')
