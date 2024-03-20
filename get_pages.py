@@ -88,7 +88,7 @@ def main():
     # When we've seen 20 vizzes in a row before, stop.
     vis_seen_before_counter = [0]
 
-    LAST_PAGE = 50
+    LAST_PAGE = 20
     for page_num in range(1, LAST_PAGE + 1):
         #if vis_seen_before_counter[0] >= 20:
         #    break
