@@ -3,6 +3,8 @@ name: Take screenshots
 on:
   push:
   workflow_dispatch:
+  schedule:
+    - cron:  '05 3 * * *'
 
 permissions:
   contents: write
