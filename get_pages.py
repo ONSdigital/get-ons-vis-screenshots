@@ -42,7 +42,7 @@ def process_doc(doc_uri, results, screenshot_filenames, vis_seen_before_counter)
             vis_urls = re.findall(dvc_regex, section["markdown"])
             for vis_url in vis_urls:
                 print("   ", vis_url)
-                if '.xls' in vis_url:
+                if '.xls' in vis_url or '.pdf' in vis_url:
                     continue
                 if (vis_url in screenshot_filenames):
                     vis_seen_before_counter[0] += 1
@@ -117,6 +117,8 @@ def main():
         with open('screenshot-filenames.json', 'w') as f:
             json.dump(screenshot_filenames, f, indent=4)
 
+    if vis_seen_before_counter[0] >= 10:
+        print('Finished early, because 10 vizzes in a row have been scraped already.')
 
 if __name__ == "__main__":
     main()
