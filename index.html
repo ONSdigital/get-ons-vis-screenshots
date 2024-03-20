@@ -44,7 +44,9 @@
             sections.append('p')
                 .text(d => d.release_date);
 
-            sections.selectAll('a')
+            sections
+                .append('div')
+                .selectAll('a')
                 .data(d => d.vis_urls.filter(d => d in screenshotFilenames))
                 .join('a')
                 .attr('href', d => `https://www.ons.gov.uk/${d}`)
