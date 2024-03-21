@@ -3,6 +3,7 @@ import re
 import requests
 import subprocess
 import time
+import random
 
 ONS_URL = "https://www.ons.gov.uk/"
 PAGE_LIST_URL = (
@@ -11,10 +12,20 @@ PAGE_LIST_URL = (
 )
 
 def get_page(url):
-    print("***", url)
-    content = requests.get(url).text
-    time.sleep(1.5)
-    return content
+    time.sleep(1.5 + random.random())
+    NUM_ATTEMPTS = 11
+    for attempt_num in range(NUM_ATTEMPTS):
+        print("***", url)
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.text
+        print("Status code", response.status_code, "for", url)
+        if attempt_num < NUM_ATTEMPTS - 1:
+            sleep_time = attempt_num * attempt_num + 2
+            print("Sleeping for", sleep_time)
+            time.sleep(sleep_time)
+    print("Giving up on", url)
+    return ""
 
 
 def try_to_get_screenshot(filename, vis_url):
@@ -23,7 +34,8 @@ def try_to_get_screenshot(filename, vis_url):
         subprocess.run([
             'shot-scraper', ONS_URL + vis_url,
             '-o', 'screenshots/' + str(filename) + '.png',
-            '--quality', '60', '--wait', '4000'
+            '--quality', '60', '--wait', '4000',
+            '--user-agent', 'jtrim.ons@gmail.com'
         ], check=True)
         return True
     except:
@@ -31,49 +43,54 @@ def try_to_get_screenshot(filename, vis_url):
         return False
 
 def process_doc(doc_uri, results, screenshot_filenames, vis_seen_before_counter):
-    raw_doc_page = get_page(doc_uri + "/data")
-    try:
-        doc_page = json.loads(raw_doc_page)
-    except:
+    # Annoyingly, the /data pages for articles seem to give more rate limiting errors,
+    # so get stuff from the HTML
+    doc_page = get_page(doc_uri).splitlines()
+    if len(doc_page) < 10:
         print('PROBLEM PARSING', doc_uri)
         return
-    title = doc_page["description"]["title"]
-    try:
-        summary = doc_page["description"]["summary"]
-    except KeyError:
-        summary = ""
-    try:
-        release_date = doc_page["description"]["releaseDate"]
-    except KeyError:
-        release_date = ""
-    print(title)
+    title = "UNKNOWN TITLE"
+    for line in doc_page[:10]:
+        if '<title>' in line:
+            title = line.replace('<title>', '').replace('/<title>', '')
+    release_date = 'UNKNOWN DATE'
+    for line in doc_page[:100]:
+        if 'releaseDate' in line:
+            m = re.search('[0-9]{4}/[0-9]{2}/[0-9]{2}', line)
+            if m:
+                release_date = m.group()
+            break
+    print(title, release_date)
     print(doc_uri)
-    if "sections" in doc_page:
-        all_vis_urls = []
-        for section in doc_page["sections"]:
-            dvc_regex = r'/visualisations/dvc[^"\s]*'
-            vis_urls = re.findall(dvc_regex, section["markdown"])
-            for vis_url in vis_urls:
-                print("   ", vis_url)
-                if '.xls' in vis_url or '.pdf' in vis_url:
-                    continue
-                if (vis_url in screenshot_filenames):
-                    vis_seen_before_counter[0] += 1
-                else:
-                    vis_seen_before_counter[0] = 0
-                    filename = len(screenshot_filenames)
-                    if try_to_get_screenshot(filename, vis_url):
-                        screenshot_filenames[vis_url] = filename
 
-            all_vis_urls.extend(vis_urls)
-        if len(all_vis_urls) > 0:
-            results.append({
-                "title": title,
-                "doc_uri": doc_uri,
-                "vis_urls": all_vis_urls,
-                "summary": summary,
-                "release_date": release_date
-            })
+    # Regex starts with " to avoid getting the embed codes
+    dvc_regex = r'"/visualisations/dvc[^"\s]*'
+    all_vis_urls = []
+    for line in doc_page:
+        vis_urls = re.findall(dvc_regex, line)
+        for vis_url in vis_urls:
+            vis_url = vis_url[1:]  # Remove the leading "
+            print("   ", vis_url)
+            if '.xls' in vis_url or '.pdf' in vis_url or '.svg' in vis_url:
+                continue
+            if (vis_url in screenshot_filenames):
+                vis_seen_before_counter[0] += 1
+            else:
+                vis_seen_before_counter[0] = 0
+                filename = len(screenshot_filenames)
+                if try_to_get_screenshot(filename, vis_url):
+                    screenshot_filenames[vis_url] = filename
+        all_vis_urls.extend(vis_urls)
+
+    if len(all_vis_urls) > 0:
+        results.append({
+            "title": title,
+            "doc_uri": doc_uri,
+            "vis_urls": all_vis_urls,
+            "release_date": release_date
+        })
+        print('Got vizzes. Sleeping for 61 seconds.')
+        time.sleep(61)
 
 
 def display_page_number(page_num):
@@ -93,7 +110,7 @@ def main():
     # When we've seen 20 vizzes in a row before, stop.
     vis_seen_before_counter = [0]
 
-    LAST_PAGE = 20
+    LAST_PAGE = 3
     for page_num in range(1, LAST_PAGE + 1):
         if vis_seen_before_counter[0] >= 20:
             break
