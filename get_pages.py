@@ -4,12 +4,18 @@ import requests
 import subprocess
 import time
 import random
+import sys
 
-ONS_URL = "https://www.ons.gov.uk/"
+ONS_URL = "https://www.ons.gov.uk"
 PAGE_LIST_URL = (
     ONS_URL + "/releasecalendar/data?fromDateDay=&fromDateMonth=&fromDateYear=" +
     "&query=&size=50&toDateDay=&toDateMonth=&toDateYear=&view=&page="
 )
+
+def make_ons_url(url_suffix):
+    if not url_suffix.startswith('/'):
+        url_suffix = '/' + url_suffix
+    return ONS_URL + url_suffix
 
 def get_page(url):
     time.sleep(1.5 + random.random())
@@ -32,7 +38,7 @@ def try_to_get_screenshot(filename, vis_url):
     "Returns True if no error was thrown"
     try:
         subprocess.run([
-            'shot-scraper', ONS_URL + vis_url,
+            'shot-scraper', make_ons_url(vis_url),
             '-o', 'screenshots/' + str(filename) + '.png',
             '--quality', '60', '--wait', '4000',
             '--user-agent', 'jtrim.ons@gmail.com'
@@ -102,6 +108,8 @@ def display_page_number(page_num):
 
 
 def main():
+    print("Doing nothing for now.")
+    sys.exit(0)
     with open('articles-and-dvcs.json', 'r') as f:
         results = json.load(f)
     with open('screenshot-filenames.json', 'r') as f:
@@ -119,7 +127,7 @@ def main():
         for result in lst["result"]["results"]:
             if vis_seen_before_counter[0] >= 20:
                 break
-            uri = ONS_URL + result["uri"] + "/data"
+            uri = make_ons_url(result["uri"] + "/data")
             raw_page = get_page(uri)
             try:
                 page = json.loads(raw_page)
@@ -129,7 +137,7 @@ def main():
             if "relatedDocuments" not in page:
                 continue
             for doc in page["relatedDocuments"]:
-                doc_uri = ONS_URL + doc["uri"]
+                doc_uri = make_ons_url(doc["uri"])
                 process_doc(doc_uri, results, screenshot_filenames, vis_seen_before_counter)
 
         # Save to file after every page of results, so we'll have some results
