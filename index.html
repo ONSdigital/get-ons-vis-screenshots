@@ -41,6 +41,7 @@
         }
 
         function createPage(articlesAndDvcs, screenshotFilenames) {
+            articlesAndDvcs = articlesAndDvcs.filter(d => d.vis_urls.length > 0);
             console.log({articlesAndDvcs, screenshotFilenames});
             articlesAndDvcs = [...articlesAndDvcs].sort((a, b) => b.release_date.localeCompare(a.release_date));
 
