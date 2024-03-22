@@ -1,2 +1,652 @@
 [
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/conditionsanddiseases/bulletins/selfreportedlongcovidsymptomsuk/10july2023",
+        "release_date": "2023-07-09T23:00:00.000Z",
+        "title": "Self-reported long COVID symptoms, UK",
+        "vis_urls": [
+            "/visualisations/dvc988/line/index.html"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/constructionindustry/articles/constructionstatistics/2022",
+        "release_date": "2023-11-28T00:00:00.000Z",
+        "title": "Construction statistics, Great Britain",
+        "vis_urls": [
+            "/visualisations/dvc2738/Fig1/index.html",
+            "/visualisations/dvc2738/Fig1/datadownload.xlsx",
+            "/visualisations/dvc2738/Fig2/index.html",
+            "/visualisations/dvc2738/Fig2/datadownload.xlsx",
+            "/visualisations/dvc2738/Fig3/wrapper/index.html",
+            "/visualisations/dvc2738/Fig3/datadownload.xlsx",
+            "/visualisations/dvc2738/Fig4/index.html",
+            "/visualisations/dvc2738/Fig4/datadownload.xlsx",
+            "/visualisations/dvc2738/Fig5/index.html",
+            "/visualisations/dvc2738/Fig5/datadownload.xlsx",
+            "/visualisations/dvc2738/Fig6/index.html",
+            "/visualisations/dvc2738/Fig6/datadownload.xlsx",
+            "/visualisations/dvc2738/Fig7/index.html",
+            "/visualisations/dvc2738/Fig7/datadownload.xlsx",
+            "/visualisations/dvc2738/Fig8/index.html",
+            "/visualisations/dvc2738/Fig8/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/bulletins/parentscountryofbirthenglandandwales/2022",
+        "release_date": "2023-08-16T23:00:00.000Z",
+        "title": "Births by parents\u2019 country of birth, England and Wales",
+        "vis_urls": [
+            "/visualisations/dvc2646/fig2/index.html",
+            "/visualisations/dvc2646/fig2/datadownload.xlsx",
+            "/visualisations/dvc2646/fig3/index.html",
+            "/visualisations/dvc2646/fig3/datadownload.xlsx",
+            "/visualisations/dvc2646/map/index.html",
+            "/visualisations/dvc2646/map/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/bulletins/uktrade/september2023",
+        "release_date": "2023-11-10T00:00:00.000Z",
+        "title": "UK trade",
+        "vis_urls": [
+            "/visualisations/dvc2776/fig01/index.html",
+            "/visualisations/dvc2776/fig01/datadownload.xlsx",
+            "/visualisations/dvc2776/fig02/index.html",
+            "/visualisations/dvc2776/fig02/datadownload.xlsx",
+            "/visualisations/dvc2776/fig03/index.html",
+            "/visualisations/dvc2776/fig03/datadownload.xlsx",
+            "/visualisations/dvc2776/fig05/index.html",
+            "/visualisations/dvc2776/fig05/datadownload.xlsx",
+            "/visualisations/dvc2776/fig06/index.html",
+            "/visualisations/dvc2776/fig06/datadownload.xlsx",
+            "/visualisations/dvc2776/fig07/index.html",
+            "/visualisations/dvc2776/fig07/datadownload.xlsx",
+            "/visualisations/dvc2737/worldmap/index.html",
+            "/visualisations/dvc2737/worldmap/datadownload.xlsx",
+            "/visualisations/dvc2737/treemap/imports.html",
+            "/visualisations/dvc2737/treemap/imports.xlsx",
+            "/visualisations/dvc2737/treemap/exports.html",
+            "/visualisations/dvc2737/treemap/exports.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/economicoutputandproductivity/productivitymeasures/articles/gdpandthelabourmarket/julytoseptember2023",
+        "release_date": "2023-11-21T00:00:00.000Z",
+        "title": "UK productivity flash estimate",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/economicoutputandproductivity/output/bulletins/indexofproduction/august2023",
+        "release_date": "2023-10-11T23:00:00.000Z",
+        "title": "Index of Production, UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/bulletins/uktrade/december2023",
+        "release_date": "2024-02-15T00:00:00.000Z",
+        "title": "UK trade",
+        "vis_urls": [
+            "/visualisations/dvc2866/fig01/index.html",
+            "/visualisations/dvc2866/fig01/datadownload.xlsx",
+            "/visualisations/dvc2866/fig02/index.html",
+            "/visualisations/dvc2866/fig02/datadownload.xlsx",
+            "/visualisations/dvc2866/fig03/index.html",
+            "/visualisations/dvc2866/fig03/datadownload.xlsx",
+            "/visualisations/dvc2866/fig05/index.html",
+            "/visualisations/dvc2866/fig05/datadownload.xlsx",
+            "/visualisations/dvc2866/fig06/index.html",
+            "/visualisations/dvc2866/fig06/datadownload.xlsx",
+            "/visualisations/dvc2866/fig07/index.html",
+            "/visualisations/dvc2866/fig07/datadownload.xlsx",
+            "/visualisations/dvc2866/worldmap/index.html",
+            "/visualisations/dvc2866/worldmap/datadownload.xlsx",
+            "/visualisations/dvc2866/treemap-import/index.html",
+            "/visualisations/dvc2866/treemap-import/datadownload.xlsx",
+            "/visualisations/dvc2866/treemap-export/index.html",
+            "/visualisations/dvc2866/treemap-export/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/families/articles/kinshipcareinenglandandwales/census2021",
+        "release_date": "2023-09-25T23:00:00.000Z",
+        "title": "Kinship care in England and Wales",
+        "vis_urls": [
+            "/visualisations/dvc2726/fig01/index.html",
+            "/visualisations/dvc2726/fig01/datadownload.xlsx",
+            "/visualisations/dvc2726/fig02/index.html",
+            "/visualisations/dvc2726/fig02/datadownload.xlsx",
+            "/visualisations/dvc2726/fig03/index.html",
+            "/visualisations/dvc2726/fig03/datadownload.xlsx",
+            "/visualisations/dvc2726/fig04/index.html",
+            "/visualisations/dvc2726/fig04/datadownload.xlsx",
+            "/visualisations/dvc2726/fig05/index.html",
+            "/visualisations/dvc2726/fig05/datadownload.xlsx",
+            "/visualisations/dvc2726/fig06/index.html",
+            "/visualisations/dvc2726/fig06/datadownload.xlsx",
+            "/visualisations/dvc2726/fig07/index.html",
+            "/visualisations/dvc2726/fig07/datadownload.xlsx",
+            "/visualisations/dvc2726/fig08/index.html",
+            "/visualisations/dvc2726/fig08/datadownload.xlsx",
+            "/visualisations/dvc2726/fig09/index.html",
+            "/visualisations/dvc2726/fig09/datadownload.xlsx",
+            "/visualisations/dvc2726/fig10/index.html",
+            "/visualisations/dvc2726/fig10/datadownload.xlsx",
+            "/visualisations/dvc2726/fig11/index.html",
+            "/visualisations/dvc2726/fig11/datadownload.xlsx",
+            "/visualisations/dvc2726/fig12/index.html",
+            "/visualisations/dvc2726/fig12/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/constructionindustry/bulletins/constructionoutputingreatbritain/december2023newordersandconstructionoutputpriceindicesoctobertodecember2023",
+        "release_date": "2024-02-15T00:00:00.000Z",
+        "title": "Construction output in Great Britain",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/grossdomesticproductgdp/bulletins/gdpmonthlyestimateuk/september2023",
+        "release_date": "2023-11-10T00:00:00.000Z",
+        "title": "GDP monthly estimate, UK",
+        "vis_urls": [
+            "/visualisations/dvc2775/fig5/index.html",
+            "/visualisations/dvc2775/fig5/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/environmentalaccounts/bulletins/uknaturalcapitalaccounts/2023",
+        "release_date": "2023-11-27T00:00:00.000Z",
+        "title": "UK natural capital accounts",
+        "vis_urls": [
+            "/visualisations/dvc2780/Fig1/index.html",
+            "/visualisations/dvc2780/Fig1/datadownload.xlsx",
+            "/visualisations/dvc2780/Fig2/index.html",
+            "/visualisations/dvc2780/Fig2/datadownload.xlsx",
+            "/visualisations/dvc2780/Fig3/index.html",
+            "/visualisations/dvc2780/Fig3/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/economicoutputandproductivity/output/bulletins/economicactivityandsocialchangeintheukrealtimeindicators/27july2023",
+        "release_date": "2023-07-26T23:00:00.000Z",
+        "title": "Economic activity and social change in the UK, real-time indicators",
+        "vis_urls": [
+            "/visualisations/dvc2670/dashboard/index.html"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/business/businessservices/bulletins/businessinsightsandimpactontheukeconomy/25january2024",
+        "release_date": "2024-01-25T00:00:00.000Z",
+        "title": "Business insights and impact on the UK economy",
+        "vis_urls": [
+            "/visualisations/dvc2853/fig1/index.html",
+            "/visualisations/dvc2853/fig1/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/bulletins/bullyingandonlineexperiencesamongchildreninenglandandwales/yearendingmarch2023",
+        "release_date": "2024-03-07T00:00:00.000Z",
+        "title": "Bullying and online experiences among children in England and Wales",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/constructionindustry/bulletins/constructionoutputingreatbritain/august2023",
+        "release_date": "2023-10-11T23:00:00.000Z",
+        "title": "Construction output in Great Britain",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/business/activitysizeandlocation/bulletins/ukbusinessactivitysizeandlocation/2023",
+        "release_date": "2023-09-26T23:00:00.000Z",
+        "title": "UK business; activity, size and location",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/labourproductivity/articles/ukproductivityintroduction/octobertodecember2023andjulytoseptember2023",
+        "release_date": "2024-02-15T00:00:00.000Z",
+        "title": "Productivity flash estimate and overview, UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/indexofprivatehousingrentalprices/july2023",
+        "release_date": "2023-08-15T23:00:00.000Z",
+        "title": "Index of Private Housing Rental Prices, UK",
+        "vis_urls": [
+            "/visualisations/dvc2678/rpm/index.html",
+            "/visualisations/dvc2678/rpm/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/economicoutputandproductivity/output/bulletins/indexofproduction/september2023",
+        "release_date": "2023-11-10T00:00:00.000Z",
+        "title": "Index of Production, UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/environmentalaccounts/articles/amillionfewerpeoplearegaininghealthbenefitsfromnaturesince2020/2023-11-27",
+        "release_date": "2023-11-27T00:00:00.000Z",
+        "title": "A million fewer people are gaining health benefits from nature since 2020",
+        "vis_urls": [
+            "/visualisations/dvc2791/Images/banner.png",
+            "/visualisations/dvc2791/fig1/index.html",
+            "/visualisations/dvc2791/fig1/datadownload.xlsx",
+            "/visualisations/dvc2791/fig2/index.html",
+            "/visualisations/dvc2791/fig2/datadownload.xlsx",
+            "/visualisations/dvc2791/fig3/index.html",
+            "/visualisations/dvc2791/fig4/index.html",
+            "/visualisations/dvc2791/fig3/datadownload.xlsx",
+            "/visualisations/dvc2791/fig4/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/housepriceindex/june2023",
+        "release_date": "2023-08-15T23:00:00.000Z",
+        "title": "UK House Price Index",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/bulletins/uktrade/october2023",
+        "release_date": "2023-12-13T00:00:00.000Z",
+        "title": "UK trade",
+        "vis_urls": [
+            "/visualisations/dvc2817/fig01/index.html",
+            "/visualisations/dvc2817/fig01/datadownload.xlsx",
+            "/visualisations/dvc2817/fig02/index.html",
+            "/visualisations/dvc2817/fig02/datadownload.xlsx",
+            "/visualisations/dvc2817/fig03/index.html",
+            "/visualisations/dvc2817/fig03/datadownload.xlsx",
+            "/visualisations/dvc2817/fig05/index.html",
+            "/visualisations/dvc2817/fig05/datadownload.xlsx",
+            "/visualisations/dvc2817/fig06/index.html",
+            "/visualisations/dvc2817/fig06/datadownload.xlsx",
+            "/visualisations/dvc2737/worldmap/index.html",
+            "/visualisations/dvc2737/worldmap/datadownload.xlsx",
+            "/visualisations/dvc2737/treemap/imports.html",
+            "/visualisations/dvc2737/treemap/imports.xlsx",
+            "/visualisations/dvc2737/treemap/exports.html",
+            "/visualisations/dvc2737/treemap/exports.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/jobsandvacanciesintheuk/september2023",
+        "release_date": "2023-09-11T23:00:00.000Z",
+        "title": "Vacancies and jobs in the UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/articles/impactoftradeingoodsdatacollectionchangesonuktradestatistics/adjustmentsto2022imports",
+        "release_date": "2023-10-11T23:00:00.000Z",
+        "title": "Impact of trade in goods data collection changes on UK trade statistics",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/business/businessservices/bulletins/businessinsightsandimpactontheukeconomy/21march2024",
+        "release_date": "2024-03-21T00:00:00.000Z",
+        "title": "Business insights and impact on the UK economy",
+        "vis_urls": [
+            "/visualisations/dvc2898/fig1/index.html",
+            "/visualisations/dvc2873/fig1/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/nationalaccounts/satelliteaccounts/bulletins/consumertrends/julytoseptember2023",
+        "release_date": "2023-12-22T00:00:00.000Z",
+        "title": "Consumer trends, UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/averageweeklyearningsingreatbritain/september2023",
+        "release_date": "2023-09-11T23:00:00.000Z",
+        "title": "Average weekly earnings in Great Britain",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/uklabourmarket/september2023",
+        "release_date": "2023-09-11T23:00:00.000Z",
+        "title": "Labour market overview, UK",
+        "vis_urls": [
+            "/visualisations/dvc2702/dashwrapper/index.html"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/wellbeing/articles/moreadultsareactiveinareaswithahighernumberofsportsfacilities/2024-03-07",
+        "release_date": "2024-03-07T00:00:00.000Z",
+        "title": "More adults are active in areas with a higher number of sports facilities ",
+        "vis_urls": [
+            "/visualisations/dvc2834/sports_msoa/index.html",
+            "/visualisations/dvc2834/sports_msoa/datadownload.xlsx",
+            "/visualisations/dvc2834/beeswarm_region_sports/index.html",
+            "/visualisations/dvc2834/beeswarm_region_sports/datadownload.xlsx",
+            "/visualisations/dvc2834/beeswarm_region_largesuper/index.html",
+            "/visualisations/dvc2834/beeswarm_region_largesuper/datadownload.xlsx",
+            "/visualisations/dvc2834/multimapUK_merged/index.html",
+            "/visualisations/dvc2834/multimapUK_merged/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/jobsandvacanciesintheuk/july2023",
+        "release_date": "2023-07-10T23:00:00.000Z",
+        "title": "Vacancies and jobs in the UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicspending/bulletins/ukgovernmentdebtanddeficitforeurostatmaast/june2023",
+        "release_date": "2023-10-26T23:00:00.000Z",
+        "title": "UK government debt and deficit",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/economicoutputandproductivity/output/bulletins/economicactivityandsocialchangeintheukrealtimeindicators/25january2024",
+        "release_date": "2024-01-25T00:00:00.000Z",
+        "title": "Economic activity and social change in the UK, real-time indicators",
+        "vis_urls": [
+            "/visualisations/dvc2854/dashboard/index.html"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/economicoutputandproductivity/output/bulletins/indexofproduction/october2023",
+        "release_date": "2023-12-13T00:00:00.000Z",
+        "title": "Index of Production, UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/uklabourmarket/july2023",
+        "release_date": "2023-07-10T23:00:00.000Z",
+        "title": "Labour market overview, UK",
+        "vis_urls": [
+            "/visualisations/dvc2654/dashwrapper/index.html"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/regionallabourmarket/july2023",
+        "release_date": "2023-07-10T23:00:00.000Z",
+        "title": "Labour market in the regions of the UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/deathsregisteredweeklyinenglandandwalesprovisional/weekending22december2023",
+        "release_date": "2024-01-04T00:00:00.000Z",
+        "title": "Deaths registered weekly in England and Wales, provisional",
+        "vis_urls": [
+            "/visualisations/dvc2837/fig1/index.html",
+            "/visualisations/dvc2837/fig1/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/drugrelateddeathsandsuicideinoffendersinthecommunityenglandandwales/2011to2021",
+        "release_date": "2023-10-25T23:00:00.000Z",
+        "title": "Drug-related deaths and suicide in offenders in the community, England and Wales",
+        "vis_urls": [
+            "/visualisations/dvc2750/fig1/index.html",
+            "/visualisations/dvc2750/fig1/datadownload.xlsx",
+            "/visualisations/dvc2750/fig4/index.html",
+            "/visualisations/dvc2750/fig4/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/economicoutputandproductivity/publicservicesproductivity/articles/publicservicesproductivityestimateshealthcare/financialyearending2022",
+        "release_date": "2024-03-22T00:00:00.000Z",
+        "title": "Public service productivity, healthcare, England",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/deathsregisteredweeklyinenglandandwalesprovisional/weekending15septemner2023",
+        "release_date": "2023-09-25T23:00:00.000Z",
+        "title": "Deaths registered weekly in England and Wales, provisional",
+        "vis_urls": [
+            "/visualisations/dvc2725/fig1/index.html",
+            "/visualisations/dvc2725/fig1/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/employmentintheuk/july2023",
+        "release_date": "2023-07-10T23:00:00.000Z",
+        "title": "Employment in the UK",
+        "vis_urls": [
+            "/visualisations/dvc2658/fig1/index.html",
+            "/visualisations/dvc2658/fig1/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/business/businessservices/bulletins/businessinsightsandimpactontheukeconomy/27july2023",
+        "release_date": "2023-07-26T23:00:00.000Z",
+        "title": "Business insights and impact on the UK economy",
+        "vis_urls": [
+            "/visualisations/dvc2671/fig1/index.html",
+            "/visualisations/dvc2671/fig1/datadownload.xlsx",
+            "/visualisations/dvc2671/fig2/index.html",
+            "/visualisations/dvc2671/fig2/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/business/businessservices/bulletins/businessinsightsandimpactontheukeconomy/7march2024",
+        "release_date": "2024-03-07T00:00:00.000Z",
+        "title": "Business insights and impact on the UK economy",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/averageweeklyearningsingreatbritain/july2023",
+        "release_date": "2023-07-10T23:00:00.000Z",
+        "title": "Average weekly earnings in Great Britain",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/consumerpriceinflation/july2023",
+        "release_date": "2023-08-15T23:00:00.000Z",
+        "title": "Consumer price inflation, UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/business/activitysizeandlocation/bulletins/businessdemographyquarterlyexperimentalstatisticsuk/julytoseptember2023",
+        "release_date": "2023-10-25T23:00:00.000Z",
+        "title": "Business demography, quarterly experimental statistics, UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/bulletins/crimeinenglandandwales/yearendingseptember2023",
+        "release_date": "2024-01-25T00:00:00.000Z",
+        "title": "Crime in England and Wales",
+        "vis_urls": [
+            "/visualisations/dvc2835/Fig4/index.html",
+            "/visualisations/dvc2835/Fig4/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/employmentintheuk/september2023",
+        "release_date": "2023-09-11T23:00:00.000Z",
+        "title": "Employment in the UK",
+        "vis_urls": [
+            "/visualisations/dvc2710/fig1/index.html",
+            "/visualisations/dvc2710/fig1/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/constructionindustry/bulletins/constructionoutputingreatbritain/october2023",
+        "release_date": "2023-12-13T00:00:00.000Z",
+        "title": "Construction output in Great Britain",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/deathsregisteredweeklyinenglandandwalesprovisional/weekending29december2023",
+        "release_date": "2024-01-09T00:00:00.000Z",
+        "title": "Deaths registered weekly in England and Wales, provisional",
+        "vis_urls": [
+            "/visualisations/dvc2838/fig1/index.html",
+            "/visualisations/dvc2838/fig1/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/housing/bulletins/housingpurchaseaffordabilitygreatbritain/2022",
+        "release_date": "2023-07-26T23:00:00.000Z",
+        "title": "Housing Purchase Affordability, UK",
+        "vis_urls": [
+            "/visualisations/dvc2650/fig04/index.html",
+            "/visualisations/dvc2650/fig04/datadownload.xlsx",
+            "/visualisations/dvc2650/fig06/index.html",
+            "/visualisations/dvc2650/fig06/datadownload.xlsx",
+            "/visualisations/dvc2650/fig07/index.html",
+            "/visualisations/dvc2650/fig07/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/environmentalaccounts/articles/developingestimatesofdepletionfortheuknaturalcapitalaccounts/2024",
+        "release_date": "2024-03-07T00:00:00.000Z",
+        "title": "Developing estimates of depletion for the UK natural capital accounts",
+        "vis_urls": [
+            "/visualisations/dvc2849/fig1/index.html",
+            "/visualisations/dvc2849/fig1/datadownload.xlsx",
+            "/visualisations/dvc2849/fig2/index.html",
+            "/visualisations/dvc2849/fig2/datadownload.xlsx",
+            "/visualisations/dvc2849/fig3/index.html",
+            "/visualisations/dvc2849/fig3/datadownload.xlsx",
+            "/visualisations/dvc2849/fig4/index.html",
+            "/visualisations/dvc2849/fig4/datadownload.xlsx",
+            "/visualisations/dvc2849/fig5/index.html",
+            "/visualisations/dvc2849/fig5/datadownload.xlsx",
+            "/visualisations/dvc2849/fig6/index.html",
+            "/visualisations/dvc2849/fig6/datadownload.xlsx",
+            "/visualisations/dvc2849/fig7/index.html",
+            "/visualisations/dvc2849/fig7/datadownload.xlsx",
+            "/visualisations/dvc2849/fig8/index.html",
+            "/visualisations/dvc2849/fig8/datadownload.xlsx",
+            "/visualisations/dvc2849/fig9/index.html",
+            "/visualisations/dvc2849/fig9/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/bulletins/overseastravelandtourismprovisional/julytoseptember2023",
+        "release_date": "2024-01-24T00:00:00.000Z",
+        "title": "Overseas travel and tourism, provisional",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/publicsectorpersonnel/bulletins/publicsectoremployment/june2023",
+        "release_date": "2023-09-11T23:00:00.000Z",
+        "title": "Public sector employment, UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peoplenotinwork/economicinactivity/articles/risingillhealthandeconomicinactivitybecauseoflongtermsicknessuk/2019to2023",
+        "release_date": "2023-07-25T23:00:00.000Z",
+        "title": "Rising ill-health and economic inactivity because of long-term sickness, UK",
+        "vis_urls": [
+            "/visualisations/dvc2644/fig05/index.html",
+            "/visualisations/dvc2644/fig05/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/bulletins/earningsandemploymentfrompayasyouearnrealtimeinformationuk/september2023",
+        "release_date": "2023-09-11T23:00:00.000Z",
+        "title": "Earnings and employment from Pay As You Earn Real Time Information, UK",
+        "vis_urls": [
+            "/visualisations/dvc2701/fig6/index.html",
+            "/visualisations/dvc2701/fig6/datadownload.xlsx",
+            "/visualisations/dvc2701/fig7/index.html",
+            "/visualisations/dvc2701/fig7/datadownload.xlsx",
+            "/visualisations/dvc2701/fig8/index.html",
+            "/visualisations/dvc2701/fig8/datadownload.xlsx",
+            "/visualisations/dvc2701/fig9/index.html",
+            "/visualisations/dvc2701/fig9/datadownload.xlsx",
+            "/visualisations/dvc2701/fig14/index.html",
+            "/visualisations/dvc2701/fig14/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/economicoutputandproductivity/output/bulletins/economicactivityandsocialchangeintheukrealtimeindicators/7march2024",
+        "release_date": "2024-03-07T00:00:00.000Z",
+        "title": "Economic activity and social change in the UK, real-time indicators",
+        "vis_urls": [
+            "/visualisations/dvc2887/dashboard/index.html"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/bulletins/uktrade/august2023",
+        "release_date": "2023-10-11T23:00:00.000Z",
+        "title": "UK trade",
+        "vis_urls": [
+            "/visualisations/dvc2737/fig01/wrapper/index.html",
+            "/visualisations/dvc2737/fig01/wrapper/datadownload.xlsx",
+            "/visualisations/dvc2737/fig02/index.html",
+            "/visualisations/dvc2737/fig02/datadownload.xlsx",
+            "/visualisations/dvc2737/fig03/index.html",
+            "/visualisations/dvc2737/fig03/datadownload.xlsx",
+            "/visualisations/dvc2737/fig05/index.html",
+            "/visualisations/dvc2737/fig05/datadownload.xlsx",
+            "/visualisations/dvc2737/fig06/index.html",
+            "/visualisations/dvc2737/fig06/datadownload.xlsx",
+            "/visualisations/dvc2737/worldmap/index.html",
+            "/visualisations/dvc2737/worldmap/datadownload.xlsx",
+            "/visualisations/dvc2737/treemap/imports.html",
+            "/visualisations/dvc2737/treemap/imports.xlsx",
+            "/visualisations/dvc2737/treemap/exports.html",
+            "/visualisations/dvc2737/treemap/exports.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/conditionsanddiseases/bulletins/prevalenceofsymptomsandimpactofrespiratoryinfectionsuk/10july2023",
+        "release_date": "2023-07-09T23:00:00.000Z",
+        "title": "Prevalence of symptoms and impact of respiratory infections, UK",
+        "vis_urls": [
+            "/visualisations/dvc2620/fig1-line-chart/index.html",
+            "/visualisations/dvc2620/fig1-line-chart/datadownload.xlsx",
+            "/visualisations/dvc2620/fig2-odds-ratio/index.html",
+            "/visualisations/dvc2620/fig2-odds-ratio/datadownload.xlsx",
+            "/visualisations/dvc2620/fig3-tie-fighter/index.html",
+            "/visualisations/dvc2620/fig3-tie-fighter/datadownload.xlsx",
+            "/visualisations/dvc2620/fig4-line-chart/index.html",
+            "/visualisations/dvc2620/fig4-line-chart/datadownload.xlsx",
+            "/visualisations/dvc2620/fig5-odds-ratio/index.html",
+            "/visualisations/dvc2620/fig5-odds-ratio/datadownload.xlsx",
+            "/visualisations/dvc988/line/index.html"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/retailindustry/bulletins/retailsales/february2024",
+        "release_date": "2024-03-22T00:00:00.000Z",
+        "title": "Retail sales, Great Britain",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/economy/economicoutputandproductivity/output/bulletins/indexofservices/august2023",
+        "release_date": "2023-10-11T23:00:00.000Z",
+        "title": "Index of Services, UK",
+        "vis_urls": []
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/smallpopulationsenglandandwales/census2021",
+        "release_date": "2023-09-24T23:00:00.000Z",
+        "title": "Small populations, England and Wales",
+        "vis_urls": [
+            "/visualisations/dvc2269/fig1/index.html",
+            "/visualisations/dvc2269/fig1/datadownload.xlsx",
+            "/visualisations/dvc2269/fig2/index.html",
+            "/visualisations/dvc2269/fig2/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/businessindustryandtrade/business/businessservices/bulletins/businessinsightsandimpactontheukeconomy/4january2024",
+        "release_date": "2024-01-04T00:00:00.000Z",
+        "title": "Business insights and impact on the UK economy",
+        "vis_urls": [
+            "/visualisations/dvc2836/fig1/index.html",
+            "/visualisations/dvc2836/fig1/datadownload.xlsx"
+        ]
+    },
+    {
+        "doc_uri": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/articles/comparisonsofallcausemortalitybetweeneuropeancountriesatlocallevels/28december2019toweekending1july2022",
+        "release_date": "2023-09-24T23:00:00.000Z",
+        "title": "Comparisons of all-cause mortality between European countries at local levels",
+        "vis_urls": [
+            "/visualisations/dvc2718/fig1/index.html",
+            "/visualisations/dvc2718/fig1/datadownload.xlsx",
+            "/visualisations/dvc2718/fig3/index.html",
+            "/visualisations/dvc2718/fig3/datadownload.xlsx",
+            "/visualisations/dvc2718/fig6/index.html",
+            "/visualisations/dvc2718/fig6/datadownload.xlsx",
+            "/visualisations/dvc2718/fig8/index.html",
+            "/visualisations/dvc2718/fig8/datadownload.xlsx",
+            "/visualisations/dvc2718/fig9/index.html",
+            "/visualisations/dvc2718/fig9/datadownload.xlsx",
+            "/visualisations/dvc2718/fig11/index.html",
+            "/visualisations/dvc2718/fig11/datadownload.xlsx"
+        ]
+    }
 ]
