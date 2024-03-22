@@ -108,7 +108,7 @@ def scrape_results(results, screenshot_filenames, most_recent_prev_release_date)
     for page_num in range(1, LAST_PAGE + 1):
         display_page_number(page_num)
         lst = json.loads(get_page(PAGE_LIST_URL + str(page_num)))
-        for i, result in enumerate(lst["result"]["results"][:5]):
+        for i, result in enumerate(lst["result"]["results"]):
             print(i)
             uri = make_data_url(make_ons_url(result["uri"]))
             raw_page = get_page(uri)
