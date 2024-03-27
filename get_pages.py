@@ -45,7 +45,7 @@ def try_to_get_screenshot(filename, vis_url):
         subprocess.run([
             'shot-scraper', make_ons_url(vis_url),
             '-o', 'screenshots/' + str(filename) + '.png',
-            '--quality', '60', '--wait', '4000',
+            '--quality', '60', '--width', '960', '--wait', '4000',
             '--user-agent', 'jtrim.ons@gmail.com'
         ], check=True)
         return True
