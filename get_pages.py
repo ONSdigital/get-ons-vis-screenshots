@@ -61,9 +61,11 @@ def process_doc(doc_uri, results, screenshot_filenames, most_recent_prev_release
         print('PROBLEM PARSING', doc_uri)
         return False
     title = doc_page["description"]["title"]
-    try:
+    if "releaseDate" in doc_page["description"]:
         release_date = doc_page["description"]["releaseDate"]
-    except KeyError:
+    elif "release_date" in doc_page["description"]:
+        release_date = doc_page["description"]["release_date"]
+    else:
         print('PROBLEM GETTING RELEASE DATE FOR', doc_uri)
         return False
     print(release_date, title)
@@ -117,9 +119,14 @@ def scrape_results(results, screenshot_filenames, most_recent_prev_release_date)
             except:
                 print('Failed to parse', uri, '!')
                 continue
-            if "relatedDocuments" not in page:
-                continue
-            for doc in page["relatedDocuments"]:
+            if "relatedDocuments" in page:
+                related_docs = page["relatedDocuments"]
+            elif "related_documents" in page:
+                # I think there was a recent change from "relatedDocuments" to "related_documents"
+                related_docs = page["related_documents"]
+            else:
+                related_docs = []
+            for doc in related_docs:
                 doc_uri = make_ons_url(doc["uri"])
                 done = process_doc(doc_uri, results, screenshot_filenames, most_recent_prev_release_date)
                 if done:
