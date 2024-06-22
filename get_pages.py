@@ -131,7 +131,7 @@ def scrape_results(results, screenshot_filenames, most_recent_prev_release_date)
             done = True
             for doc in related_docs:
                 doc_uri = make_ons_url(doc["uri"])
-                if not process_doc(doc_uri, results, screenshot_filenames, most_recent_prev_release_date)
+                if not process_doc(doc_uri, results, screenshot_filenames, most_recent_prev_release_date):
                     # Only finish early if all documents are old.
                     # TODO: avoid the `done` variable... and tidy up all the code in this file!
                     done = False
