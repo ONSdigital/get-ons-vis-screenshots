@@ -126,6 +126,9 @@ def scrape_results(results, screenshot_filenames, most_recent_prev_release_date)
                 # I think there was a recent change from "relatedDocuments" to "related_documents"
                 related_docs = page["related_documents"]
             else:
+                related_docs = []
+
+            if len(related_docs) == 0:
                 continue
 
             done = True
