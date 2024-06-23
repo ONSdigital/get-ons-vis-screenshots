@@ -106,7 +106,6 @@ def display_page_number(page_num):
 
 
 def scrape_results(results, screenshot_filenames, most_recent_prev_release_date):
-    most_recent_prev_release_date = "2024-05-12T23:00:00.000Z" # FIXME: remove this! it's just a temporary fix.
     LAST_PAGE = 15
     for page_num in range(1, LAST_PAGE + 1):
         display_page_number(page_num)
