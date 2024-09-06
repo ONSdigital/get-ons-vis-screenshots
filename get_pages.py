@@ -7,10 +7,11 @@ import random
 import sys
 from urllib.parse import urljoin
 
+RESULT_SIZE = 50
 ONS_URL = "https://www.ons.gov.uk"
 PAGE_LIST_URL = (
-    ONS_URL + "/releasecalendar/data?fromDateDay=&fromDateMonth=&fromDateYear=" +
-    "&query=&size=50&toDateDay=&toDateMonth=&toDateYear=&view=&page="
+    "https://api.beta.ons.gov.uk/v1/search/releases?q=&sort=release_date_desc&limit=" + str(RESULT_SIZE) +
+    "&offset="
 )
 
 def make_ons_url(url_path):
@@ -109,8 +110,8 @@ def scrape_results(results, screenshot_filenames, most_recent_prev_release_date)
     LAST_PAGE = 15
     for page_num in range(1, LAST_PAGE + 1):
         display_page_number(page_num)
-        lst = json.loads(get_page(PAGE_LIST_URL + str(page_num)))
-        for i, result in enumerate(lst["result"]["results"]):
+        lst = json.loads(get_page(PAGE_LIST_URL + str((page_num-1)*RESULT_SIZE)))
+        for i, result in enumerate(lst["releases"]):
             print(i)
             uri = make_data_url(make_ons_url(result["uri"]))
             raw_page = get_page(uri)
