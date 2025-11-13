@@ -76,7 +76,7 @@ def process_doc(doc_uri, results, screenshot_filenames, most_recent_prev_release
         return False
     all_vis_urls = []
     for section in doc_page["sections"]:
-        dvc_regex = r'/visualisations/dvc[^"\s]*'
+        dvc_regex = r'/visualisations/[^"\s]*'
         vis_urls = re.findall(dvc_regex, section["markdown"])
         for vis_url in vis_urls:
             print("   ", vis_url)
