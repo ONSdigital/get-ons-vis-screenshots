@@ -5,6 +5,8 @@ import subprocess
 import time
 import random
 import sys
+import os
+import shutil
 from datetime import datetime
 from urllib.parse import urljoin, urlparse
 
@@ -13,7 +15,7 @@ from bs4 import BeautifulSoup
 RESULT_SIZE = 50
 ONS_URL = "https://www.ons.gov.uk"
 PAGE_LIST_URL = (
-    "https://api.beta.ons.gov.uk/v1/search/releases?q=&sort=release_date_desc&limit=" + str(RESULT_SIZE) +
+    "https://api.beta.ons.gov.uk/v1/search/releases?q=&sort=release_date_desc&limit=" + str(RESULT_SIZE)
     "&offset="
 )
 
@@ -76,6 +78,15 @@ def normalize_release_date(date_str):
         except ValueError:
             continue
     return ""
+
+
+def compare_dates(date_a, date_b):
+    if not date_a or not date_b:
+        return None
+    try:
+        return datetime.strptime(date_a, "%Y-%m-%d") <= datetime.strptime(date_b, "%Y-%m-%d")
+    except ValueError:
+        return None
 
 
 def extract_release_date(html):
@@ -149,15 +160,48 @@ def extract_vis_urls(html):
 def try_to_get_screenshot(filename, vis_url):
     "Returns True if no error was thrown"
     try:
+        venv_bin = os.path.dirname(sys.executable)
+        shot_scraper_exe = shutil.which("shot-scraper", path=venv_bin) or "shot-scraper"
         subprocess.run([
-            'shot-scraper', make_ons_url(vis_url),
+            shot_scraper_exe, make_ons_url(vis_url),
             '-o', 'screenshots/' + str(filename) + '.png',
             '--quality', '60', '--width', '960', '--wait', '4000',
             '--user-agent', 'jtrim.ons@gmail.com'
-        ], check=True)
+        ], check=True, capture_output=True, text=True)
         return True
-    except:
+    except subprocess.CalledProcessError as exc:
         print('Failed to screenshot', vis_url, '!')
+        if exc.stderr:
+            print('shot-scraper stderr:', exc.stderr.strip())
+            if 'unexpected keyword argument \'devtools\'' in exc.stderr:
+                print('Falling back to Playwright screenshot for', vis_url)
+                return try_to_get_screenshot_with_playwright(filename, vis_url)
+        return False
+
+
+def try_to_get_screenshot_with_playwright(filename, vis_url):
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception as exc:
+        print('Playwright import failed:', exc)
+        return False
+    target_url = make_ons_url(vis_url)
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            context = browser.new_context(
+                viewport={"width": 960, "height": 720},
+                user_agent='jtrim.ons@gmail.com'
+            )
+            page = context.new_page()
+            page.goto(target_url, wait_until="networkidle", timeout=60000)
+            page.wait_for_timeout(4000)
+            page.screenshot(path='screenshots/' + str(filename) + '.png', full_page=True)
+            context.close()
+            browser.close()
+        return True
+    except Exception as exc:
+        print('Playwright screenshot failed for', target_url, ':', exc)
         return False
 
 def process_doc(doc_uri, results, screenshot_filenames, most_recent_prev_release_date):
@@ -173,7 +217,8 @@ def process_doc(doc_uri, results, screenshot_filenames, most_recent_prev_release
         print('PROBLEM GETTING RELEASE DATE FOR', doc_url)
     else:
         print(release_date, title)
-        if release_date <= most_recent_prev_release_date:
+        is_old = compare_dates(release_date, most_recent_prev_release_date)
+        if is_old is True:
             return True
 
     all_vis_urls = extract_vis_urls(raw_doc_page)
@@ -238,9 +283,12 @@ def main():
     with open('screenshot-filenames.json', 'r') as f:
         screenshot_filenames = json.load(f)
 
-    most_recent_prev_release_date = max(
-        result['release_date'] for result in results
-    ) if len(results) else ''
+    normalized_release_dates = [
+        normalize_release_date(result.get('release_date', ''))
+        for result in results
+        if result.get('release_date')
+    ]
+    most_recent_prev_release_date = max(normalized_release_dates) if normalized_release_dates else ''
     print(f'Most recent previous release date: {most_recent_prev_release_date}')
 
     scrape_results(results, screenshot_filenames, most_recent_prev_release_date)
