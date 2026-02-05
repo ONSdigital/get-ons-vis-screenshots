@@ -16,7 +16,7 @@ RESULT_SIZE = 50
 ONS_URL = "https://www.ons.gov.uk"
 PAGE_LIST_URL = (
     "https://api.beta.ons.gov.uk/v1/search/releases?q=&sort=release_date_desc&limit=" + str(RESULT_SIZE)
-    "&offset="
+    + "&offset="
 )
 
 def make_ons_url(url_path):
