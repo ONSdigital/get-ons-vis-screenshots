@@ -5,7 +5,10 @@ import subprocess
 import time
 import random
 import sys
-from urllib.parse import urljoin
+from datetime import datetime
+from urllib.parse import urljoin, urlparse
+
+from bs4 import BeautifulSoup
 
 RESULT_SIZE = 50
 ONS_URL = "https://www.ons.gov.uk"
@@ -16,12 +19,6 @@ PAGE_LIST_URL = (
 
 def make_ons_url(url_path):
     return urljoin(ONS_URL, url_path)
-
-def make_data_url(url):
-    if url.endswith('/'):
-        return url + 'data'
-    else:
-        return url + '/data'
 
 def get_page(url):
     time.sleep(1.1 + random.random())
@@ -40,6 +37,115 @@ def get_page(url):
     return ""
 
 
+def normalize_ons_path(href):
+    if not href:
+        return None
+    href = href.strip()
+    if href.startswith("//"):
+        parsed = urlparse("https:" + href)
+        if parsed.netloc.endswith("ons.gov.uk"):
+            return parsed.path
+        return None
+    parsed = urlparse(href)
+    if parsed.scheme and parsed.netloc:
+        if parsed.netloc.endswith("ons.gov.uk"):
+            return parsed.path
+        return None
+    if not href.startswith("/"):
+        href = "/" + href
+    return href
+
+
+def normalize_release_date(date_str):
+    if not date_str:
+        return ""
+    date_str = date_str.strip()
+    if "T" in date_str:
+        date_str = date_str.split("T")[0]
+    if " " in date_str and date_str[0].isdigit() and ":" in date_str:
+        date_str = date_str.split(" ")[0]
+    if "/" in date_str:
+        parts = date_str.split("/")
+        if len(parts) == 3:
+            return f"{parts[0]}-{parts[1].zfill(2)}-{parts[2].zfill(2)}"
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", date_str):
+        return date_str
+    for fmt in ("%d %B %Y", "%d %b %Y"):
+        try:
+            return datetime.strptime(date_str, fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            continue
+    return ""
+
+
+def extract_release_date(html):
+    match = re.search(r'dataLayer\[0\]\["releaseDate"\]\s*=\s*"([^"]+)"', html)
+    if match:
+        return normalize_release_date(match.group(1))
+    match = re.search(r'"datePublished"\s*:\s*"([^"]+)"', html)
+    if match:
+        return normalize_release_date(match.group(1))
+    match = re.search(r"Release date:\s*</span>\s*<br\s*/?>\s*([^<]+)", html, re.IGNORECASE)
+    if match:
+        return normalize_release_date(match.group(1))
+    return ""
+
+
+def extract_title(soup):
+    h1 = soup.find("h1")
+    if h1:
+        title = h1.get_text(strip=True)
+        if title:
+            return title
+    if soup.title and soup.title.string:
+        return soup.title.string.strip()
+    return ""
+
+
+def is_document_link(href):
+    path = normalize_ons_path(href)
+    if not path:
+        return False
+    if any(ext in path for ext in [".pdf", ".xls", ".xlsx", ".csv", ".zip", ".svg"]):
+        return False
+    return "/bulletins/" in path or "/articles/" in path
+
+
+def extract_related_doc_urls(html):
+    soup = BeautifulSoup(html, "html.parser")
+    doc_urls = []
+    containers = []
+    containers.extend(soup.select("#related-links"))
+    containers.extend(soup.select("[id*='related']"))
+    if containers:
+        for container in containers:
+            for link in container.select("a[href]"):
+                href = link.get("href")
+                if is_document_link(href):
+                    doc_urls.append(normalize_ons_path(href))
+    if not doc_urls:
+        for link in soup.select("a[href]"):
+            href = link.get("href")
+            if is_document_link(href):
+                doc_urls.append(normalize_ons_path(href))
+    return list(dict.fromkeys(doc_urls))
+
+
+def extract_vis_urls(html):
+    soup = BeautifulSoup(html, "html.parser")
+    vis_urls = []
+    for div in soup.select("div.pym-interactive[data-url]"):
+        data_url = div.get("data-url")
+        if not data_url:
+            continue
+        data_url = normalize_ons_path(data_url) or data_url.strip()
+        if data_url:
+            vis_urls.append(data_url)
+    if not vis_urls:
+        vis_urls = re.findall(r"/visualisations/[^\"\s]*", html)
+    return list(dict.fromkeys(vis_urls))
+
+
 def try_to_get_screenshot(filename, vis_url):
     "Returns True if no error was thrown"
     try:
@@ -55,42 +161,34 @@ def try_to_get_screenshot(filename, vis_url):
         return False
 
 def process_doc(doc_uri, results, screenshot_filenames, most_recent_prev_release_date):
-    raw_doc_page = get_page(make_data_url(doc_uri))
-    try:
-        doc_page = json.loads(raw_doc_page)
-    except:
-        print('PROBLEM PARSING', doc_uri)
+    doc_url = make_ons_url(doc_uri) if doc_uri.startswith("/") else doc_uri
+    raw_doc_page = get_page(doc_url)
+    if not raw_doc_page:
+        print('PROBLEM PARSING', doc_url)
         return False
-    title = doc_page["description"]["title"]
-    if "releaseDate" in doc_page["description"]:
-        release_date = doc_page["description"]["releaseDate"]
-    elif "release_date" in doc_page["description"]:
-        release_date = doc_page["description"]["release_date"]
+    soup = BeautifulSoup(raw_doc_page, "html.parser")
+    title = extract_title(soup)
+    release_date = extract_release_date(raw_doc_page)
+    if not release_date:
+        print('PROBLEM GETTING RELEASE DATE FOR', doc_url)
     else:
-        print('PROBLEM GETTING RELEASE DATE FOR', doc_uri)
-        return False
-    print(release_date, title)
-    if release_date <= most_recent_prev_release_date:
-        return True
-    if "sections" not in doc_page:
-        return False
-    all_vis_urls = []
-    for section in doc_page["sections"]:
-        dvc_regex = r'/visualisations/[^"\s]*'
-        vis_urls = re.findall(dvc_regex, section["markdown"])
-        for vis_url in vis_urls:
-            print("   ", vis_url)
-            if '.xls' in vis_url or '.pdf' in vis_url or '.svg' in vis_url:
-                continue
-            if (vis_url not in screenshot_filenames):
-                filename = len(screenshot_filenames)
-                if try_to_get_screenshot(filename, vis_url):
-                    screenshot_filenames[vis_url] = filename
+        print(release_date, title)
+        if release_date <= most_recent_prev_release_date:
+            return True
 
-        all_vis_urls.extend(vis_urls)
+    all_vis_urls = extract_vis_urls(raw_doc_page)
+    for vis_url in all_vis_urls:
+        print("   ", vis_url)
+        if '.xls' in vis_url or '.pdf' in vis_url or '.svg' in vis_url:
+            continue
+        if (vis_url not in screenshot_filenames):
+            filename = len(screenshot_filenames)
+            if try_to_get_screenshot(filename, vis_url):
+                screenshot_filenames[vis_url] = filename
+
     results.append({
         "title": title,
-        "doc_uri": doc_uri,
+        "doc_uri": doc_url,
         "vis_urls": all_vis_urls,
         "release_date": release_date
     })
@@ -113,27 +211,18 @@ def scrape_results(results, screenshot_filenames, most_recent_prev_release_date)
         lst = json.loads(get_page(PAGE_LIST_URL + str((page_num-1)*RESULT_SIZE)))
         for i, result in enumerate(lst["releases"]):
             print(i)
-            uri = make_data_url(make_ons_url(result["uri"]))
-            raw_page = get_page(uri)
-            try:
-                page = json.loads(raw_page)
-            except:
-                print('Failed to parse', uri, '!')
+            release_url = make_ons_url(result["uri"])
+            raw_page = get_page(release_url)
+            if not raw_page:
+                print('Failed to parse', release_url, '!')
                 continue
-            if "relatedDocuments" in page:
-                related_docs = page["relatedDocuments"]
-            elif "related_documents" in page:
-                # I think there was a recent change from "relatedDocuments" to "related_documents"
-                related_docs = page["related_documents"]
-            else:
-                related_docs = []
+            related_docs = extract_related_doc_urls(raw_page)
 
             if len(related_docs) == 0:
                 continue
 
             done = True
-            for doc in related_docs:
-                doc_uri = make_ons_url(doc["uri"])
+            for doc_uri in related_docs:
                 if not process_doc(doc_uri, results, screenshot_filenames, most_recent_prev_release_date):
                     # Only finish early if all documents are old.
                     # TODO: avoid the `done` variable... and tidy up all the code in this file!

@@ -1,2 +1,3 @@
 shot-scraper
 requests
+beautifulsoup4
