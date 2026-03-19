@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 
 RESULT_SIZE = 50
 ONS_URL = "https://www.ons.gov.uk"
+SCREENSHOT_DIR = os.environ.get("SCREENSHOT_DIR", "screenshots")
 PAGE_LIST_URL = (
     "https://api.beta.ons.gov.uk/v1/search/releases?q=&sort=release_date_desc&limit=" + str(RESULT_SIZE)
     + "&offset="
@@ -162,9 +163,10 @@ def try_to_get_screenshot(filename, vis_url):
     try:
         venv_bin = os.path.dirname(sys.executable)
         shot_scraper_exe = shutil.which("shot-scraper", path=venv_bin) or "shot-scraper"
+        os.makedirs(SCREENSHOT_DIR, exist_ok=True)
         subprocess.run([
             shot_scraper_exe, make_ons_url(vis_url),
-            '-o', 'screenshots/' + str(filename) + '.png',
+            '-o', os.path.join(SCREENSHOT_DIR, str(filename) + '.png'),
             '--quality', '60', '--width', '960', '--wait', '4000',
             '--user-agent', 'jtrim.ons@gmail.com'
         ], check=True, capture_output=True, text=True)
@@ -195,8 +197,30 @@ def try_to_get_screenshot_with_playwright(filename, vis_url):
             )
             page = context.new_page()
             page.goto(target_url, wait_until="networkidle", timeout=60000)
+            page.evaluate("""
+                () => (document.fonts && document.fonts.ready)
+                    ? document.fonts.ready
+                    : Promise.resolve()
+            """)
+            # If the page uses SVG markers, wait for defs + usage to exist before capture.
+            try:
+                page.wait_for_function("""
+                    () => {
+                        const uses = document.querySelectorAll("[marker-end],[marker-start],[marker-mid]");
+                        if (!uses.length) return true;
+                        return document.querySelectorAll("svg defs marker").length > 0;
+                    }
+                """, timeout=10000)
+                page.evaluate("""
+                    () => new Promise(resolve =>
+                        requestAnimationFrame(() => requestAnimationFrame(resolve))
+                    )
+                """)
+            except Exception:
+                pass
             page.wait_for_timeout(4000)
-            page.screenshot(path='screenshots/' + str(filename) + '.png', full_page=True)
+            os.makedirs(SCREENSHOT_DIR, exist_ok=True)
+            page.screenshot(path=os.path.join(SCREENSHOT_DIR, str(filename) + '.png'), full_page=True)
             context.close()
             browser.close()
         return True
