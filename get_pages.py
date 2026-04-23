@@ -120,7 +120,7 @@ def is_document_link(href):
         return False
     if any(ext in path for ext in [".pdf", ".xls", ".xlsx", ".csv", ".zip", ".svg"]):
         return False
-    return "/bulletins/" in path or "/articles/" in path
+    return "/bulletins/" in path or "/articles/" in path or "/methodologies/" in path
 
 
 def extract_related_doc_urls(html):
