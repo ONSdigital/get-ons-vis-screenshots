@@ -12,7 +12,7 @@ from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
-RESULT_SIZE = 50
+RESULT_SIZE = 150
 ONS_URL = "https://www.ons.gov.uk"
 SCREENSHOT_DIR = os.environ.get("SCREENSHOT_DIR", "screenshots")
 PAGE_LIST_URL = (
