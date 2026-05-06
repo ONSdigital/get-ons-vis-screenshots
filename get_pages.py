@@ -1,3 +1,4 @@
+import argparse
 import json
 import re
 import requests
@@ -7,7 +8,7 @@ import random
 import sys
 import os
 import shutil
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
@@ -273,9 +274,8 @@ def display_page_number(page_num):
     print("****************")
 
 
-def scrape_results(results, screenshot_filenames, most_recent_prev_release_date):
-    LAST_PAGE = 15
-    for page_num in range(1, LAST_PAGE + 1):
+def scrape_results(results, screenshot_filenames, most_recent_prev_release_date, max_pages=15):
+    for page_num in range(1, max_pages + 1):
         display_page_number(page_num)
         lst = json.loads(get_page(PAGE_LIST_URL + str((page_num-1)*RESULT_SIZE)))
         for i, result in enumerate(lst["releases"]):
@@ -301,21 +301,68 @@ def scrape_results(results, screenshot_filenames, most_recent_prev_release_date)
                 return
 
 
+def parse_since_date(since_str):
+    """Parse a --since value into a YYYY-MM-DD string.
+
+    Accepts:
+      - an ISO date like "2024-01-15"
+      - a relative value like "30days", "6months", "2years"
+    """
+    since_str = since_str.strip()
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", since_str):
+        return since_str
+    m = re.match(r"^(\d+)(day|days|month|months|year|years)$", since_str, re.IGNORECASE)
+    if m:
+        amount = int(m.group(1))
+        unit = m.group(2).lower().rstrip("s")
+        today = datetime.utcnow().date()
+        if unit == "day":
+            delta = timedelta(days=amount)
+        elif unit == "month":
+            delta = timedelta(days=amount * 30)
+        elif unit == "year":
+            delta = timedelta(days=amount * 365)
+        return (today - delta).strftime("%Y-%m-%d")
+    raise ValueError(f"Cannot parse --since value: {since_str!r}. Use YYYY-MM-DD or e.g. '30days', '6months', '2years'.")
+
+
 def main():
+    parser = argparse.ArgumentParser(description="Scrape ONS visualisation screenshots.")
+    parser.add_argument(
+        "--since",
+        default=None,
+        help=(
+            "How far back to scrape. Accepts an ISO date (e.g. 2024-01-15) "
+            "or a relative value (e.g. 30days, 6months, 2years). "
+            "Overrides the cutoff derived from existing data."
+        ),
+    )
+    parser.add_argument(
+        "--max-pages",
+        type=int,
+        default=15,
+        help="Maximum number of result pages to fetch (default: 15).",
+    )
+    args = parser.parse_args()
+
     with open('articles-and-dvcs.json', 'r') as f:
         results = json.load(f)
     with open('screenshot-filenames.json', 'r') as f:
         screenshot_filenames = json.load(f)
 
-    normalized_release_dates = [
-        normalize_release_date(result.get('release_date', ''))
-        for result in results
-        if result.get('release_date')
-    ]
-    most_recent_prev_release_date = max(normalized_release_dates) if normalized_release_dates else ''
-    print(f'Most recent previous release date: {most_recent_prev_release_date}')
+    if args.since:
+        most_recent_prev_release_date = parse_since_date(args.since)
+        print(f'Backfill mode — scraping back to: {most_recent_prev_release_date} (max {args.max_pages} pages)')
+    else:
+        normalized_release_dates = [
+            normalize_release_date(result.get('release_date', ''))
+            for result in results
+            if result.get('release_date')
+        ]
+        most_recent_prev_release_date = max(normalized_release_dates) if normalized_release_dates else ''
+        print(f'Most recent previous release date: {most_recent_prev_release_date}')
 
-    scrape_results(results, screenshot_filenames, most_recent_prev_release_date)
+    scrape_results(results, screenshot_filenames, most_recent_prev_release_date, max_pages=args.max_pages)
 
     with open('articles-and-dvcs.json', 'w') as f:
         results_without_duplicates = [
