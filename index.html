@@ -70,7 +70,7 @@
                 .selectAll('a')
                 .data(d => d.vis_urls.filter(d => d in screenshotFilenames))
                 .join('a')
-                .attr('href', d => `https://www.ons.gov.uk/${d}`)
+                .attr('href', d => `https://www.ons.gov.uk${d}`)
                 .append('img')
                 .style('width', '100%')
                 .style('max-width', '500px')
